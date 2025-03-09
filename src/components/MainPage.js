@@ -321,7 +321,7 @@ const MainPage = () => {
               </p>
 
               <div className="grid md:grid-cols-3 gap-8 mb-12">
-                <div className="bg-gray-800 p-8 rounded-xl">
+                <div className="bg-gray-800 p-8 rounded-xl flex flex-col h-full">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-semibold text-white">Bereket Kibret</h3>
                     <a 
@@ -336,11 +336,16 @@ const MainPage = () => {
                     </a>
                   </div>
                   <p className="text-gray-300 font-medium">Microsoft Software Engineer</p>
-                  <p className="text-gray-400 mt-4 leading-relaxed">
+                  <p className="text-gray-400 mt-4 leading-relaxed flex-grow">
                     A graduate of the University of Southern California, where he worked as a security specialist during his time there. Bringing his unique combination of security operations experience and software engineering expertise to revolutionize the security industry.
                   </p>
+                  <div className="flex justify-between items-center mt-6 pt-4 border-t border-gray-700">
+                    <img src="/microsoft-logo.png" alt="Microsoft" className="h-11" />
+                    <img src="/usc-logo.png" alt="USC" className="h-8" />
+                  </div>
                 </div>
-                <div className="bg-gray-800 p-8 rounded-xl">
+
+                <div className="bg-gray-800 p-8 rounded-xl flex flex-col h-full">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-semibold text-white">Samuel Tigistu</h3>
                     <a 
@@ -355,11 +360,16 @@ const MainPage = () => {
                     </a>
                   </div>
                   <p className="text-gray-300 font-medium">Microsoft Software Engineer</p>
-                  <p className="text-gray-400 mt-4 leading-relaxed">
+                  <p className="text-gray-400 mt-4 leading-relaxed flex-grow">
                     A Yale University graduate bringing advanced technical expertise to our security solutions. His innovative approach to software engineering helps drive our AI-powered security systems forward.
                   </p>
+                  <div className="flex justify-between items-center mt-6 pt-4 border-t border-gray-700">
+                    <img src="/microsoft-logo.png" alt="Microsoft" className="h-12" />
+                    <img src="/yale-logo.png" alt="Yale" className="h-14" />
+                  </div>
                 </div>
-                <div className="bg-gray-800 p-8 rounded-xl">
+
+                <div className="bg-gray-800 p-8 rounded-xl flex flex-col h-full">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-semibold text-white">Maher Dedgeba</h3>
                     <a 
@@ -374,7 +384,13 @@ const MainPage = () => {
                     </a>
                   </div>
                   <p className="text-gray-300">Target HQ Data Analyst</p>
-                  <p className="text-gray-400 mt-2">A San Jose State graduate ensuring seamless operations and data-driven solutions</p>
+                  <p className="text-gray-400 mt-4 leading-relaxed flex-grow">
+                    A San Jose State graduate ensuring seamless operations and data-driven solutions
+                  </p>
+                  <div className="flex justify-between items-center mt-6 pt-4 border-t border-gray-700">
+                    <img src="/target-logo.png" alt="Target" className="h-12" />
+                    <img src="/sjsu-logo.png" alt="San Jose State University" className="h-12" />
+                  </div>
                 </div>
               </div>
 
