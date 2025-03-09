@@ -290,12 +290,20 @@ const MainPage = () => {
             <p className="text-xl mb-8 text-gray-300 max-w-2xl mx-auto">
               Intelligent protection for what matters most, designed with you in mind.
             </p>
-            <button 
-              onClick={() => scrollToSection(contactRef, 'contact')} 
-              className="bg-blue-600 hover:bg-blue-500 py-3 px-8 rounded-full text-white font-medium transition-all duration-300"
-            >
-              Get Started
-            </button>
+            <div className="flex justify-center space-x-6">
+              <button 
+                onClick={() => scrollToSection(servicesRef, 'services')} 
+                className="bg-blue-600 hover:bg-blue-500 py-4 px-10 rounded-full text-white font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/50"
+              >
+                Get Started
+              </button>
+              <button 
+                onClick={() => scrollToSection(contactRef, 'contact')} 
+                className="bg-transparent hover:bg-blue-600/10 py-4 px-10 rounded-full text-white font-semibold text-lg transition-all duration-300 transform hover:scale-105 border-2 border-blue-600 hover:border-blue-500"
+              >
+                Contact Us
+              </button>
+            </div>
           </div>
         </section>
 
