@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import ServiceCard from './ServiceCard';
 import ContactForm from './ContactForm';
 
@@ -430,12 +430,12 @@ const MainPage = () => {
                 Live Life Residential Care is located in Oregon's Clackamas county happy valley area, in a vibrant and accessible neighborhood. Our facility is just a five-minute walk from public transportation and Pioneer Park, with convenient access to Fred Meyer, Safeway, Costco, and the Clackamas Library.
               </p>
               <div className="mt-8 text-center">
-                <a 
+                <button 
                   onClick={handleFacilityPhotoRequest}
                   className="inline-block bg-sky-500 text-white py-3 px-8 hover:bg-sky-600 transition-colors duration-300 cursor-pointer"
                 >
                   Request Facility Photos
-                </a>
+                </button>
               </div>
             </div>
           </div>
