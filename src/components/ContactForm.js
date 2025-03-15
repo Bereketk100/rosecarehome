@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -8,6 +8,13 @@ const ContactForm = () => {
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  useEffect(() => {
+    const messageInput = document.querySelector('#message');
+    if (messageInput && messageInput.value !== message) {
+      setMessage(messageInput.value);
+    }
+  }, [message]);
 
   function onSubmit(e) {
     e.preventDefault();
@@ -44,18 +51,18 @@ const ContactForm = () => {
 
   if (isSuccess) {
     return (
-      <div className="text-center p-8 bg-gray-900 rounded-lg">
-        <svg className="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="text-center p-8 bg-white rounded-lg shadow-xl border border-sky-100">
+        <svg className="w-16 h-16 text-sky-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
         </svg>
-        <h3 className="text-2xl font-semibold mb-4">Thank You!</h3>
-        <p className="text-gray-300">Your message has been sent successfully. We'll get back to you soon.</p>
+        <h3 className="text-2xl font-light mb-4 text-slate-800">Thank You!</h3>
+        <p className="text-slate-600">Your message has been sent successfully. We'll get back to you soon.</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6">
+    <form onSubmit={onSubmit} className="space-y-6 bg-white p-8 rounded-lg shadow-xl">
       {error && (
         <div className="bg-red-500 text-white p-4 rounded-lg mb-4">
           {error}
@@ -67,9 +74,9 @@ const ContactForm = () => {
           id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Full Name"
+          placeholder="Name"
           required
-          className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-blue-500 text-white"
+          className="w-full px-4 py-3 bg-white border-b border-slate-200 focus:border-sky-500 transition-colors duration-300 outline-none font-light text-slate-800 placeholder-slate-400"
         />
       </div>
       <div>
@@ -78,9 +85,9 @@ const ContactForm = () => {
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email Address"
+          placeholder="Email"
           required
-          className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-blue-500 text-white"
+          className="w-full px-4 py-3 bg-white border-b border-slate-200 focus:border-sky-500 transition-colors duration-300 outline-none font-light text-slate-800 placeholder-slate-400"
         />
       </div>
       <div>
@@ -89,8 +96,8 @@ const ContactForm = () => {
           id="phone"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          placeholder="Phone Number"
-          className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-blue-500 text-white"
+          placeholder="Phone"
+          className="w-full px-4 py-3 bg-white border-b border-slate-200 focus:border-sky-500 transition-colors duration-300 outline-none font-light text-slate-800 placeholder-slate-400"
         />
       </div>
       <div>
@@ -98,18 +105,18 @@ const ContactForm = () => {
           id="message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Your Message"
+          placeholder="Message"
           rows="4"
           required
-          className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-blue-500 text-white resize-none"
+          className="w-full px-4 py-3 bg-white border-b border-slate-200 focus:border-sky-500 transition-colors duration-300 outline-none font-light text-slate-800 placeholder-slate-400 resize-none"
         ></textarea>
       </div>
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-blue-600 hover:bg-blue-500 py-3 px-8 rounded-lg text-white font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-sky-500 text-white py-4 font-light tracking-wider hover:bg-sky-600 transition-colors duration-300 disabled:opacity-50 shadow-lg shadow-sky-200/50"
       >
-        {isSubmitting ? 'Sending...' : 'Send Message'}
+        {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
       </button>
     </form>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ServiceCard from './ServiceCard';
 import ContactForm from './ContactForm';
 
@@ -15,11 +15,24 @@ const MainPage = () => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
     setActiveTab(tabName);
   };
+
+  const handleFacilityPhotoRequest = () => {
+    scrollToSection(contactRef, 'contact');
+    setTimeout(() => {
+      const messageInput = document.querySelector('#message');
+      const messageEvent = new Event('input', { bubbles: true });
+      if (messageInput) {
+        messageInput.value = "Hi, I would like to request photos of your facility. Please send them to my email. Thank you!";
+        messageInput.dispatchEvent(messageEvent);
+      }
+    }, 100);
+  };
+
   const services = [
     {
-      title: "Firewatch",
-      description: "Comprehensive fire monitoring and prevention services to keep your property safe.",
-      path: "/services/firewatch",
+      title: "24/7 Supervision",
+      description: "Round-the-clock care and support for all residents, ensuring safety and comfort at all times.",
+      image: "/supervision.jpeg",
       icon: <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-7 w-7 text-white"
@@ -36,9 +49,9 @@ const MainPage = () => {
       </svg>
     },
     {
-      title: "Business Security",
-      description: "Enterprise-grade solutions designed to protect your business assets seamlessly.",
-      path: "/services/business",
+      title: "Personal Care",
+      description: "Comprehensive assistance with daily living activities and personal hygiene needs.",
+      image: "/pic1.jpeg",
       icon: <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-7 w-7 text-white"
@@ -55,9 +68,9 @@ const MainPage = () => {
       </svg>
     },
     {
-      title: "Mobile Patrol",
-      description: "On-the-go security services to ensure safety and surveillance across various locations.",
-      path: "/services/mobile-patrol",
+      title: "Medication Management",
+      description: "Professional oversight and administration of prescribed medications and treatments.",
+      image: "/pic2.jpeg",
       icon: <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-7 w-7 text-white"
@@ -74,9 +87,9 @@ const MainPage = () => {
       </svg>
     },
     {
-      title: "Apartment/Neighborhood Security",
-      description: "Tailored security solutions for residential communities and apartment complexes.",
-      path: "/services/neighborhood",
+      title: "Dietary Support",
+      description: "Nutritious, well-balanced meals tailored to individual dietary needs and preferences.",
+      image: "/pic4.jpeg",
       icon: <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-7 w-7 text-white"
@@ -93,9 +106,9 @@ const MainPage = () => {
       </svg>
     },
     {
-      title: "Event Security",
-      description: "Professional security services for events, ensuring safety and smooth operations.",
-      path: "/services/event",
+      title: "Behavioral Support",
+      description: "Specialized assistance and positive behavioral interventions by trained professionals.",
+      image: "/pic3.jpeg",
       icon: <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-7 w-7 text-white"
@@ -112,9 +125,9 @@ const MainPage = () => {
       </svg>
     },
     {
-      title: "SecureAI Platform",
-      description: "Revolutionary security management software for complete control and visibility of your security operations.",
-      path: "/services/additional",
+      title: "Transportation Services",
+      description: "Safe and reliable transportation for medical appointments, shopping, and community activities.",
+      image: "/last.jpeg",
       icon: <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-7 w-7 text-white"
@@ -133,14 +146,15 @@ const MainPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-slate-50 text-slate-900">
       {/* Navigation Banner */}
-      <nav className="fixed top-0 w-full bg-gray-900 shadow-lg z-50">
+      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-slate-100 z-50">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20">
             <div className="flex items-center">
-              <img src="/logo.PNG" alt="SecureAI Logo" className="h-10 w-auto" />
-              <span className="ml-2 text-xl font-bold">SECUREAI</span>
+              <span className="text-2xl font-light tracking-wider text-slate-900">
+                <span className="text-sky-500">LIVE</span> LIFE CARE
+              </span>
             </div>
             
             {/* Mobile menu button */}
@@ -175,43 +189,43 @@ const MainPage = () => {
             </div>
 
             {/* Desktop navigation */}
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden md:flex space-x-12">
               <button 
                 onClick={() => scrollToSection(homeRef, 'home')}
-                className={`text-sm font-medium transition-colors duration-200 ${
-                  activeTab === 'home' ? 'text-blue-500' : 'text-gray-300 hover:text-white'
+                className={`text-sm font-light tracking-wider transition-colors duration-300 ${
+                  activeTab === 'home' ? 'text-sky-500' : 'text-slate-600 hover:text-sky-500'
                 }`}
               >
                 Home
               </button>
               <button 
                 onClick={() => scrollToSection(servicesRef, 'services')}
-                className={`text-sm font-medium transition-colors duration-200 ${
-                  activeTab === 'services' ? 'text-blue-500' : 'text-gray-300 hover:text-white'
+                className={`text-sm font-light tracking-wider transition-colors duration-300 ${
+                  activeTab === 'services' ? 'text-sky-500' : 'text-slate-600 hover:text-sky-500'
                 }`}
               >
                 Services
               </button>
               <button 
                 onClick={() => scrollToSection(aboutRef, 'about')}
-                className={`text-sm font-medium transition-colors duration-200 ${
-                  activeTab === 'about' ? 'text-blue-500' : 'text-gray-300 hover:text-white'
+                className={`text-sm font-light tracking-wider transition-colors duration-300 ${
+                  activeTab === 'about' ? 'text-sky-500' : 'text-slate-600 hover:text-sky-500'
                 }`}
               >
                 About Us
               </button>
               <button 
                 onClick={() => scrollToSection(contactRef, 'contact')}
-                className={`text-sm font-medium transition-colors duration-200 ${
-                  activeTab === 'contact' ? 'text-blue-500' : 'text-gray-300 hover:text-white'
+                className={`text-sm font-light tracking-wider transition-colors duration-300 ${
+                  activeTab === 'contact' ? 'text-sky-500' : 'text-slate-600 hover:text-sky-500'
                 }`}
               >
                 Contact Us
               </button>
               <button 
                 onClick={() => scrollToSection(missionRef, 'mission')}
-                className={`text-sm font-medium transition-colors duration-200 ${
-                  activeTab === 'mission' ? 'text-blue-500' : 'text-gray-300 hover:text-white'
+                className={`text-sm font-light tracking-wider transition-colors duration-300 ${
+                  activeTab === 'mission' ? 'text-sky-500' : 'text-slate-600 hover:text-sky-500'
                 }`}
               >
                 Our Mission
@@ -274,164 +288,182 @@ const MainPage = () => {
         </div>
       </nav>
 
-      <div className="pt-16">
+      <div className="pt-20">
         {/* Hero Section */}
-        <section ref={homeRef} className="relative w-full h-screen flex items-center justify-center">
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black"></div>
-          <div className="container mx-auto text-center relative z-10 px-4 max-w-4xl">
-            <img 
-              src="/logo.PNG" 
-              alt="Security Shield Logo" 
-              className="mx-auto mb--4 w-44 md:w-80 lg:w-96"
-            />
-            <h1 className="text-6xl font-bold mb-4 tracking-tight">
-              SECUREAI
+        <section ref={homeRef} className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-white via-sky-50 to-white">
+          <div className="container mx-auto text-center px-4 max-w-4xl">
+            <h1 className="text-7xl font-light mb-6 tracking-tight">
+              <span className="text-sky-500">Live Life</span>
+              <span className="text-slate-800"> Care Home</span>
             </h1>
-            <p className="text-xl mb-8 text-gray-300 max-w-2xl mx-auto">
-              Intelligent protection for what matters most, designed with you in mind.
+            <p className="text-xl mb-12 text-slate-600 max-w-2xl mx-auto font-light tracking-wide">
+              Compassionate Care, Building Independence
             </p>
-            <div className="flex justify-center space-x-6">
-              <button 
-                onClick={() => scrollToSection(servicesRef, 'services')} 
-                className="bg-blue-600 hover:bg-blue-500 py-4 px-10 rounded-full text-white font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/50"
-              >
-                Get Started
-              </button>
+            <div className="flex justify-center space-x-8">
               <button 
                 onClick={() => scrollToSection(contactRef, 'contact')} 
-                className="bg-transparent hover:bg-blue-600/10 py-4 px-10 rounded-full text-white font-semibold text-lg transition-all duration-300 transform hover:scale-105 border-2 border-blue-600 hover:border-blue-500"
+                className="bg-sky-500 text-white px-12 py-3 text-sm tracking-wider font-light transition-all duration-300 hover:bg-sky-600 shadow-lg shadow-sky-200"
               >
-                Contact Us
+                CONTACT US
+              </button>
+              <button 
+                onClick={() => scrollToSection(servicesRef, 'services')} 
+                className="bg-white text-slate-800 px-12 py-3 text-sm tracking-wider font-light transition-all duration-300 hover:bg-sky-50 border border-slate-200 shadow-lg"
+              >
+                LEARN MORE
               </button>
             </div>
           </div>
         </section>
 
         {/* Services Section */}
-        <section ref={servicesRef} className="py-24 bg-black">
+        <section ref={servicesRef} className="py-32 bg-slate-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-semibold text-center mb-16">Our Services</h2>
+            <h2 className="text-4xl font-light text-center mb-16 tracking-wide">
+              <span className="text-sky-500">Our</span> Services
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {services.map((service, index) => (
-                <ServiceCard key={index} {...service} />
+                <ServiceCard 
+                  key={index}
+                  title={service.title}
+                  description={service.description}
+                  image={service.image}
+                />
               ))}
             </div>
           </div>
         </section>
 
         {/* About Us Section */}
-        <section ref={aboutRef} className="py-24 bg-gray-900">
+        <section ref={aboutRef} className="py-32 bg-sky-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-semibold text-center mb-16">About Us</h2>
-            <div className="max-w-4xl mx-auto">
-              <p className="text-gray-300 text-lg mb-12 leading-relaxed">
-                SecureAI was founded by two security professionals who saw gaps in the industry and set out to redefine private security. With years of hands-on experience, they combined their expertise in AI technology, data analysis, and security operations to create a smarter, more reliable solution.
-              </p>
-
-              <div className="grid md:grid-cols-3 gap-8 mb-12">
-                <div className="bg-gray-800 p-8 rounded-xl flex flex-col h-full">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-semibold text-white">Bereket Kibret</h3>
-                    <a 
-                      href="https://www.linkedin.com/in/bereketkibret" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-blue-400 hover:text-blue-300"
-                    >
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                      </svg>
-                    </a>
-                  </div>
-                  <p className="text-gray-300 font-medium">Microsoft Software Engineer</p>
-                  <p className="text-gray-400 mt-4 leading-relaxed flex-grow">
-                    A graduate of the University of Southern California, where he worked as a security specialist during his time there. Bringing his unique combination of security operations experience and software engineering expertise to revolutionize the security industry.
+            <h2 className="text-4xl font-light text-center mb-16 tracking-wide">About Us</h2>
+            <div className="max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-12 mb-16">
+                <div>
+                  <h3 className="text-2xl font-light mb-6 text-sky-500">Our Story</h3>
+                  <p className="text-slate-600 text-lg mb-6 leading-relaxed">
+                    Live Life Residential Care was founded with a vision to transform the lives of individuals with intellectual and developmental disabilities through personalized care and unwavering support.
                   </p>
-                  <div className="flex justify-between items-center mt-6 pt-4 border-t border-gray-700">
-                    <img src="/microsoft-logo.png" alt="Microsoft" className="h-11" />
-                    <img src="/usc-logo.png" alt="USC" className="h-8" />
-                  </div>
+                  <p className="text-slate-600 text-lg mb-6 leading-relaxed">
+                    Our facility provides a warm, home-like environment where residents can thrive, develop their skills, and maintain their independence while receiving professional care and support 24/7.
+                  </p>
+                  <p className="text-slate-600 text-lg leading-relaxed">
+                    We take pride in our comprehensive approach to care, focusing on each resident's unique needs, preferences, and goals. Our team of dedicated professionals works collaboratively to ensure the highest standards of care and support.
+                  </p>
                 </div>
-
-                <div className="bg-gray-800 p-8 rounded-xl flex flex-col h-full">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-semibold text-white">Samuel Tigistu</h3>
-                    <a 
-                      href="https://www.linkedin.com/in/samuel-tigistu-3060971a3/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-blue-400 hover:text-blue-300"
-                    >
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                <div>
+                  <h3 className="text-2xl font-light mb-6 text-sky-500">Our Commitment</h3>
+                  <ul className="space-y-4 text-slate-600">
+                    <li className="flex items-start">
+                      <svg className="w-6 h-6 text-sky-500 mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                       </svg>
-                    </a>
-                  </div>
-                  <p className="text-gray-300 font-medium">Microsoft Software Engineer</p>
-                  <p className="text-gray-400 mt-4 leading-relaxed flex-grow">
-                    A Yale University graduate bringing advanced technical expertise to our security solutions. His innovative approach to software engineering helps drive our AI-powered security systems forward.
-                  </p>
-                  <div className="flex justify-between items-center mt-6 pt-4 border-t border-gray-700">
-                    <img src="/microsoft-logo.png" alt="Microsoft" className="h-12" />
-                    <img src="/yale-logo.png" alt="Yale" className="h-14" />
-                  </div>
-                </div>
-
-                <div className="bg-gray-800 p-8 rounded-xl flex flex-col h-full">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-semibold text-white">Maher Dedgeba</h3>
-                    <a 
-                      href="https://www.linkedin.com/in/maher-dedgeba-18893a2bb/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-blue-400 hover:text-blue-300"
-                    >
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                      <span>Person-centered care approach focused on individual needs</span>
+                    </li>
+                    <li className="flex items-start">
+                      <svg className="w-6 h-6 text-sky-500 mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                       </svg>
-                    </a>
-                  </div>
-                  <p className="text-gray-300">Target HQ Data Analyst</p>
-                  <p className="text-gray-400 mt-4 leading-relaxed flex-grow">
-                    A San Jose State graduate ensuring seamless operations and data-driven solutions
-                  </p>
-                  <div className="flex justify-between items-center mt-6 pt-4 border-t border-gray-700">
-                    <img src="/target-logo.png" alt="Target" className="h-12" />
-                    <img src="/sjsu-logo.png" alt="San Jose State University" className="h-12" />
-                  </div>
+                      <span>24/7 professional support and supervision</span>
+                    </li>
+                    <li className="flex items-start">
+                      <svg className="w-6 h-6 text-sky-500 mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Safe and nurturing home-like environment</span>
+                    </li>
+                    <li className="flex items-start">
+                      <svg className="w-6 h-6 text-sky-500 mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Comprehensive care and support services</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
 
-              <p className="text-gray-300 text-lg leading-relaxed">
-                By merging technology with in-person security, SecureAI is setting a new standard in safety and transparency—because security should evolve with the world around it. Our platform provides real-time monitoring, enhanced accountability, and faster response times, delivering a comprehensive security solution for the modern era.
+              {/* Executive Director Box */}
+              <div className="bg-white shadow-xl rounded-lg overflow-hidden">
+                <div className="md:grid md:grid-cols-3">
+                  <div className="md:col-span-1 bg-sky-500 p-8 text-white min-h-full flex items-center justify-center">
+                    <div className="text-center flex flex-col items-center justify-center">
+                      <h3 className="text-2xl font-semibold mb-2">Yohannes Demssie</h3>
+                      <p className="text-sky-100 text-lg mb-4">Executive Director</p>
+                      <button 
+                        onClick={() => scrollToSection(contactRef, 'contact')}
+                        className="inline-flex items-center text-white hover:text-sky-200 transition-colors duration-200"
+                      >
+                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span>Contact Us</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="md:col-span-2 p-8">
+                    <div className="prose prose-lg">
+                      <p className="text-slate-600 leading-relaxed mb-6">
+                        With over six years of dedicated experience in developmental disability services, Yohannes Demssie brings exceptional leadership and vision to Live Life Care Home. His commitment to creating a supportive and empowering environment has been instrumental in shaping our facility's success.
+                      </p>
+                      <p className="text-slate-600 leading-relaxed mb-6">
+                        Yohannes's expertise spans across behavioral support, medical care coordination, and mental health services. His person-centered approach ensures that each resident receives individualized attention and care that promotes their independence and well-being.
+                      </p>
+                      <p className="text-slate-600 leading-relaxed">
+                        Under his leadership, Live Life Care Home has developed comprehensive programs that focus on building independence, fostering personal growth, and enhancing the quality of life for all residents.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Location Section */}
+        <section className="py-32 bg-slate-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-12">Our Location</h2>
+            <div className="max-w-4xl mx-auto">
+              <p className="text-slate-600 text-lg mb-8">
+                Live Life Residential Care is located in Oregon's Clackamas county happy valley area, in a vibrant and accessible neighborhood. Our facility is just a five-minute walk from public transportation and Pioneer Park, with convenient access to Fred Meyer, Safeway, Costco, and the Clackamas Library.
               </p>
+              <div className="mt-8 text-center">
+                <a 
+                  onClick={handleFacilityPhotoRequest}
+                  className="inline-block bg-sky-500 text-white py-3 px-8 hover:bg-sky-600 transition-colors duration-300 cursor-pointer"
+                >
+                  Request Facility Photos
+                </a>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Contact Us Section */}
-        <section ref={contactRef} id="contact" className="py-24 bg-black">
+        <section ref={contactRef} id="contact" className="py-32 bg-sky-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-semibold text-center mb-16">Contact Us</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">Contact Us</h2>
             <div className="max-w-lg mx-auto">
               <ContactForm />
             </div>
           </div>
         </section>
 
-        {/* Mission Section - Moved to end */}
-        <section ref={missionRef} className="py-24 bg-gray-900">
+        {/* Mission Section */}
+        <section ref={missionRef} className="py-32 bg-slate-50 border-t border-slate-100">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-semibold text-center mb-16">Our Mission</h2>
+            <h2 className="text-3xl font-semibold text-center mb-16 text-slate-900">Our Mission</h2>
             <div className="max-w-4xl mx-auto text-center">
-              <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                At SecureAI, we are revolutionizing private security by integrating cutting-edge AI technology with professional, in-person security services. Our mission is to provide businesses, communities, and individuals with the highest level of safety, reliability, and transparency.
+              <p className="text-slate-600 text-lg leading-relaxed mb-8">
+                At Live Life Care Home, our mission is to provide exceptional, person-centered care that empowers individuals with intellectual and developmental disabilities to live their fullest lives. We believe in creating a nurturing environment where every resident can thrive, grow, and maintain their independence.
               </p>
-              <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                Through our AI-powered solutions, we enhance accountability, optimize response times, and ensure real-time monitoring, giving our clients complete peace of mind. We believe that security should be proactive, not reactive, and that technology should empower, not replace, human expertise.
+              <p className="text-slate-600 text-lg leading-relaxed mb-8">
+                We are committed to delivering comprehensive support services that address the unique needs of each resident, fostering their personal growth, and enhancing their quality of life. Our dedicated team works tirelessly to ensure that every individual receives the highest standard of care while maintaining their dignity and autonomy.
               </p>
-              <p className="text-gray-300 text-lg leading-relaxed">
-                At SecureAI, we don't just provide security—we redefine it. Our commitment to innovation, excellence, and customer service drives us to continuously improve and adapt our solutions to meet the evolving security challenges of today's world.
+              <p className="text-slate-600 text-lg leading-relaxed">
+                Through our holistic approach to care, professional staff training, and continuous improvement of our services, we strive to be a leading provider of residential care services in Oregon. We measure our success by the wellbeing, happiness, and achievements of our residents.
               </p>
             </div>
           </div>
