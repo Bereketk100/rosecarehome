@@ -49,7 +49,7 @@ const MainPage = () => {
       </svg>
     },
     {
-      title: "Personal Care",
+      title: "Personal Assistance",
       description: "Comprehensive assistance with daily living activities and personal hygiene needs.",
       image: "/pic1.jpeg",
       icon: <svg
