@@ -30,7 +30,7 @@ const MainPage = () => {
 
   const services = [
     {
-      title: "24/7 Supervision",
+      title: "24/7 Care",
       description: "Round-the-clock care and support for all residents, ensuring safety and comfort at all times.",
       image: "/supervision.jpeg",
       icon: <svg
@@ -347,7 +347,10 @@ const MainPage = () => {
                     Live Life Residential Care was founded with a vision to transform the lives of individuals with intellectual and developmental disabilities through personalized care and unwavering support.
                   </p>
                   <p className="text-slate-600 text-lg mb-6 leading-relaxed">
-                    Our facility provides a warm, home-like environment where residents can thrive, develop their skills, and maintain their independence while receiving professional care and support 24/7.
+                    Our team works closely with behavior specialists, service coordinators, primary care physicians, and trained Direct Support Professionals (DSPs) to create an environment that fosters growth, stability, and well-being. Whether assisting with daily activities, providing behavioral support, or managing medical needs, we ensure that every aspect of care is handled with compassion and expertise.
+                  </p>
+                  <p className="text-slate-600 text-lg mb-6 leading-relaxed">
+                    At Live Life Care Home, we believe in treating residents with dignity and respect, allowing them to thrive in a comfortable, home-like setting.
                   </p>
                   <p className="text-slate-600 text-lg leading-relaxed">
                     We take pride in our comprehensive approach to care, focusing on each resident's unique needs, preferences, and goals. Our team of dedicated professionals works collaboratively to ensure the highest standards of care and support.
@@ -366,7 +369,7 @@ const MainPage = () => {
                       <svg className="w-6 h-6 text-sky-500 mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                       </svg>
-                      <span>24/7 professional support and supervision</span>
+                      <span>24/7 professional support and care</span>
                     </li>
                     <li className="flex items-start">
                       <svg className="w-6 h-6 text-sky-500 mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
