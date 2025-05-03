@@ -30,7 +30,7 @@ const MainPage = () => {
 
   const services = [
     {
-      title: "24/7 Care",
+      title: "24/8 Care",
       description: "Round-the-clock care and support for all residents, ensuring safety and comfort at all times.",
       image: "/supervision.jpeg",
       icon: <svg
@@ -49,7 +49,7 @@ const MainPage = () => {
       </svg>
     },
     {
-      title: "Personal Assistance",
+      title: "Assistance with Daily Living (ADLs)",
       description: "Comprehensive assistance with daily living activities and personal hygiene needs.",
       image: "/pic1.jpeg",
       icon: <svg
