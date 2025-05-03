@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import ServiceCard from './ServiceCard';
 import ContactForm from './ContactForm';
+import Gallery from './Gallery';
 
 const MainPage = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -10,6 +11,7 @@ const MainPage = () => {
   const aboutRef = useRef(null);
   const contactRef = useRef(null);
   const missionRef = useRef(null);
+  const galleryRef = useRef(null);
 
   const scrollToSection = (ref, tabName) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
@@ -230,6 +232,14 @@ const MainPage = () => {
               >
                 Our Mission
               </button>
+              <button 
+                onClick={() => scrollToSection(galleryRef, 'gallery')}
+                className={`text-sm font-light tracking-wider transition-colors duration-300 ${
+                  activeTab === 'gallery' ? 'text-sky-500' : 'text-slate-600 hover:text-sky-500'
+                }`}
+              >
+                Gallery
+              </button>
             </div>
           </div>
 
@@ -281,6 +291,15 @@ const MainPage = () => {
                   className="block w-full text-left px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800 rounded-md"
                 >
                   Our Mission
+                </button>
+                <button
+                  onClick={() => {
+                    scrollToSection(galleryRef, 'gallery');
+                    setIsMenuOpen(false);
+                  }}
+                  className="block w-full text-left px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800 rounded-md"
+                >
+                  Gallery
                 </button>
               </div>
             </div>
@@ -442,6 +461,11 @@ const MainPage = () => {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* Gallery Section */}
+        <section ref={galleryRef} className="bg-slate-50">
+          <Gallery />
         </section>
 
         {/* Contact Us Section */}
