@@ -32,7 +32,7 @@ const MainPage = () => {
 
   const services = [
     {
-      title: "24/8 Care",
+      title: "24/7 Care",
       description: "Round-the-clock care and support for all residents, ensuring safety and comfort at all times.",
       image: "/supervision.jpeg",
       icon: <svg
