@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import ServiceCard from './ServiceCard';
 import ContactForm from './ContactForm';
 import Gallery from './Gallery';
+import ProgramCard from './ProgramCard';
 
 const MainPage = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -12,6 +13,7 @@ const MainPage = () => {
   const contactRef = useRef(null);
   const missionRef = useRef(null);
   const galleryRef = useRef(null);
+  const programsRef = useRef(null);
 
   const scrollToSection = (ref, tabName) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
@@ -147,6 +149,83 @@ const MainPage = () => {
     }
   ];
 
+  const programs = [
+    {
+      title: "Day Support Program",
+      items: [
+        "Group games and social interaction",
+        "Music, art, and recreational therapy",
+        "Community outings and volunteer work",
+        "Speech, occupational, and physical therapy",
+        "Skill-building and social learning sessions"
+      ]
+    },
+    {
+      title: "Community Integration Activities",
+      items: [
+        "Grocery shopping and trips to malls or local stores",
+        "Dining out at restaurants and cafes",
+        "Nature walks, park visits, and beach outings",
+        "Attendance at community events and festivals",
+        "Gym access and group fitness opportunities"
+      ]
+    },
+    {
+      title: "Health and Wellness Supports",
+      items: [
+        "Gym memberships and customized fitness routines",
+        "Swimming and aquatic therapy",
+        "Walking, biking, and outdoor activities",
+        "Staff support for nutrition and hydration"
+      ]
+    },
+    {
+      title: "Person-Centered Outings",
+      items: [
+        "Nature hikes and picnics",
+        "Shopping trips aligned with personal hobbies",
+        "Visits to beaches, museums, or parks",
+        "Enjoying movies, music events, or local attractions"
+      ]
+    },
+    {
+      title: "Behavioral and Mental Health Supports",
+      items: [
+        "Behavior specialists who develop personalized strategies",
+        "Licensed therapists for individual or group counseling",
+        "Mental health mentors offering ongoing emotional support",
+        "Coordination with outside professionals for continuity of care"
+      ]
+    },
+    {
+      title: "Employment and Job Coaching",
+      items: [
+        "Job coaching and interest-based career exploration",
+        "On-the-job support and employer coordination",
+        "Volunteer experiences for skill development",
+        "Resume help, interview practice, and transportation planning"
+      ]
+    },
+    {
+      title: "Education and Personal Growth",
+      items: [
+        "Support with school enrollment and class attendance",
+        "Assistance with routines to support learning",
+        "Homework help and tutoring coordination",
+        "Encouragement to explore subjects of personal interest"
+      ]
+    },
+    {
+      title: "Skill Building and Independence",
+      items: [
+        "Budgeting and shopping practice",
+        "Meal preparation and healthy eating support",
+        "Communication, self-advocacy, and daily living routines",
+        "Travel training, hygiene, and home maintenance support"
+      ]
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       {/* Navigation Banner */}
@@ -240,6 +319,14 @@ const MainPage = () => {
               >
                 Gallery
               </button>
+              <button 
+                onClick={() => scrollToSection(programsRef, 'programs')}
+                className={`text-sm font-light tracking-wider transition-colors duration-300 ${
+                  activeTab === 'programs' ? 'text-sky-500' : 'text-slate-600 hover:text-sky-500'
+                }`}
+              >
+                Programs
+              </button>
             </div>
           </div>
 
@@ -300,6 +387,15 @@ const MainPage = () => {
                   className="block w-full text-left px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800 rounded-md"
                 >
                   Gallery
+                </button>
+                <button
+                  onClick={() => {
+                    scrollToSection(programsRef, 'programs');
+                    setIsMenuOpen(false);
+                  }}
+                  className="block w-full text-left px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800 rounded-md"
+                >
+                  Programs
                 </button>
               </div>
             </div>
@@ -466,6 +562,32 @@ const MainPage = () => {
         {/* Gallery Section */}
         <section ref={galleryRef} className="bg-slate-50">
           <Gallery />
+        </section>
+
+        {/* Programs Section */}
+        <section ref={programsRef} className="py-32 bg-sky-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-light text-center mb-16 tracking-wide">
+              <span className="text-sky-500">Programs</span> and Activities
+            </h2>
+            <div className="max-w-7xl mx-auto">
+              <p className="text-slate-600 text-lg text-center mb-12 max-w-4xl mx-auto">
+                We are committed to creating a supportive, person-centered environment where individuals can grow, achieve their goals, and engage meaningfully with their community. Our programs are thoughtfully tailored to reflect the unique preferences, abilities, and strengths of each resident.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {programs.map((program, index) => (
+                  <ProgramCard
+                    key={index}
+                    title={program.title}
+                    items={program.items}
+                  />
+                ))}
+              </div>
+              <p className="text-slate-600 text-sm text-center mt-12 max-w-3xl mx-auto italic">
+                All programs and supports are personalized according to each individual's unique needs and guided by their ISP (Individual Support Plan) goals—ensuring meaningful progress and a fulfilling quality of life.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* Contact Us Section */}

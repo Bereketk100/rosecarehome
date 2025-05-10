@@ -4,7 +4,8 @@ import PhotoViewer from './PhotoViewer';
 const Gallery = () => {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   
-  const photos = Array.from({ length: 23 }, (_, i) => `/h${i + 1}.jpeg`);
+  // Update to use only 2 photos with .jpg extension
+  const photos = ['/h1.jpg', '/h2.jpg'];
 
   return (
     <div className="py-32 bg-slate-50">
@@ -12,7 +13,7 @@ const Gallery = () => {
         <h2 className="text-4xl font-light text-center mb-16 tracking-wide">
           <span className="text-sky-500">Our</span> Facility
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {photos.map((photo, index) => (
             <div
               key={index}
@@ -23,6 +24,10 @@ const Gallery = () => {
                 src={photo}
                 alt={`Facility view ${index + 1}`}
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  console.log(`Failed to load image: ${photo}`);
+                  e.target.style.display = 'none';
+                }}
               />
               <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
