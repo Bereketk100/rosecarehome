@@ -1,42 +1,62 @@
 import React, { useState, useEffect } from 'react';
 
 const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [message, setMessage] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+    resume: null,
+  });
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     const messageInput = document.querySelector('#message');
-    if (messageInput && messageInput.value !== message) {
-      setMessage(messageInput.value);
+    if (messageInput && messageInput.value !== formData.message) {
+      setFormData({ ...formData, message: messageInput.value });
     }
-  }, [message]);
+  }, [formData.message]);
 
-  function onSubmit(e) {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, resume: e.target.files[0] });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsSubmitting(true);
 
+    const formDataToSend = new FormData();
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('phone', formData.phone);
+    formDataToSend.append('message', formData.message);
+    if (formData.resume) {
+      formDataToSend.append('resume', formData.resume);
+    }
+
     fetch("https://formcarry.com/s/6ke1FR2Sql5", {
       method: 'POST',
-      headers: { 
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name, email, phone, message })
+      body: formDataToSend
     })
     .then(response => response.json())
     .then(response => {
       if (response.code === 200) {
         setIsSuccess(true);
-        setName('');
-        setEmail('');
-        setPhone('');
-        setMessage('');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+          resume: null,
+        });
       } else {
         setError(response.message);
       }
@@ -47,22 +67,22 @@ const ContactForm = () => {
     .finally(() => {
       setIsSubmitting(false);
     });
-  }
+  };
 
   if (isSuccess) {
     return (
-      <div className="text-center p-8 bg-white rounded-lg shadow-xl border border-sky-100">
-        <svg className="w-16 h-16 text-sky-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="text-center p-8 bg-white rounded-lg shadow-xl border border-green-100">
+        <svg className="w-16 h-16 text-green-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
         </svg>
-        <h3 className="text-2xl font-light mb-4 text-slate-800">Thank You!</h3>
-        <p className="text-slate-600">Your message has been sent successfully. We'll get back to you soon.</p>
+        <h3 className="text-2xl font-light mb-4 text-green-800">Thank You!</h3>
+        <p className="text-green-700">Your message has been sent successfully. We'll get back to you soon.</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6 bg-white p-8 rounded-lg shadow-xl">
+    <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-lg shadow-xl border border-green-100">
       {error && (
         <div className="bg-red-500 text-white p-4 rounded-lg mb-4">
           {error}
@@ -71,50 +91,58 @@ const ContactForm = () => {
       <div>
         <input
           type="text"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Your Full Name"
           required
-          className="w-full px-4 py-3 bg-white border-b border-slate-200 focus:border-sky-500 transition-colors duration-300 outline-none font-light text-slate-800 placeholder-slate-400"
+          className="w-full px-4 py-3 bg-white border-b border-green-200 focus:border-green-600 transition-colors duration-300 outline-none font-light text-green-800 placeholder-green-400"
         />
       </div>
       <div>
         <input
           type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Your Email Address"
           required
-          className="w-full px-4 py-3 bg-white border-b border-slate-200 focus:border-sky-500 transition-colors duration-300 outline-none font-light text-slate-800 placeholder-slate-400"
+          className="w-full px-4 py-3 bg-white border-b border-green-200 focus:border-green-600 transition-colors duration-300 outline-none font-light text-green-800 placeholder-green-400"
         />
       </div>
       <div>
         <input
           type="tel"
-          id="phone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          placeholder="Phone"
-          className="w-full px-4 py-3 bg-white border-b border-slate-200 focus:border-sky-500 transition-colors duration-300 outline-none font-light text-slate-800 placeholder-slate-400"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          placeholder="Your Phone Number"
+          className="w-full px-4 py-3 bg-white border-b border-green-200 focus:border-green-600 transition-colors duration-300 outline-none font-light text-green-800 placeholder-green-400"
         />
       </div>
       <div>
         <textarea
-          id="message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="How can we assist you?"
           rows="4"
           required
-          className="w-full px-4 py-3 bg-white border-b border-slate-200 focus:border-sky-500 transition-colors duration-300 outline-none font-light text-slate-800 placeholder-slate-400 resize-none"
+          className="w-full px-4 py-3 bg-white border-b border-green-200 focus:border-green-600 transition-colors duration-300 outline-none font-light text-green-800 placeholder-green-400 resize-none"
         ></textarea>
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Attach Resume (Optional)</label>
+        <input
+          type="file"
+          onChange={handleFileChange}
+          className="w-full px-4 py-3 bg-white border-b border-green-200 focus:border-green-600 transition-colors duration-300 outline-none font-light text-green-800 placeholder-green-400"
+        />
       </div>
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-sky-500 text-white py-4 font-light tracking-wider hover:bg-sky-600 transition-colors duration-300 disabled:opacity-50 shadow-lg shadow-sky-200/50"
+        className="w-full bg-green-600 text-white py-4 font-light tracking-wider hover:bg-green-700 transition-colors duration-300 disabled:opacity-50 shadow-lg shadow-green-200/50"
       >
         {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
       </button>
