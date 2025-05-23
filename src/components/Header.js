@@ -1,36 +1,89 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <header className="bg-gradient-to-r from-green-700 to-green-500 text-white py-5 shadow-lg">
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        <h1 className="text-3xl font-extrabold tracking-tight">Whiterose Care Homes</h1>
-        <nav className="space-x-8">
-          <a
-            href="/"
-            className="text-lg font-medium hover:underline hover:underline-offset-4 transition-all"
+    <header className="bg-gradient-to-r from-green-700 to-green-600 text-white py-5 shadow-lg border-b-2 border-rose-300">
+      <div className="container mx-auto px-6">
+        {/* Desktop Menu */}
+        <div className="hidden md:flex justify-between items-center">
+          <h1 className="text-3xl font-extrabold tracking-tight">Whiterose Care Homes</h1>
+          <nav className="space-x-8">
+            <a href="/" className="text-lg font-medium hover:text-rose-300 transition-all">Home</a>
+            <a href="#services" className="text-lg font-medium hover:text-rose-300 transition-all">Services</a>
+            <a href="#team" className="text-lg font-medium hover:text-rose-300 transition-all">Our Team</a>
+            <a href="#contact" className="text-lg font-medium hover:text-rose-300 transition-all">Contact</a>
+          </nav>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className="flex md:hidden justify-between items-center">
+          <h1 className="text-xl font-bold tracking-tight">Whiterose</h1>
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-white focus:outline-none"
           >
-            Home
-          </a>
-          <a
-            href="#services"
-            className="text-lg font-medium hover:underline hover:underline-offset-4 transition-all"
-          >
-            Services
-          </a>
-          <a
-            href="#team"
-            className="text-lg font-medium hover:underline hover:underline-offset-4 transition-all"
-          >
-            Our Team
-          </a>
-          <a
-            href="#contact"
-            className="text-lg font-medium hover:underline hover:underline-offset-4 transition-all"
-          >
-            Contact
-          </a>
-        </nav>
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {isMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16m-7 6h7"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
+
+        {/* Mobile Menu Dropdown */}
+        {isMenuOpen && (
+          <div className="md:hidden mt-4 py-4 bg-green-800 rounded-lg">
+            <nav className="flex flex-col space-y-3 items-center">
+              <a 
+                href="/" 
+                className="text-lg font-medium hover:text-rose-300 transition-all px-4 py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Home
+              </a>
+              <a 
+                href="#services" 
+                className="text-lg font-medium hover:text-rose-300 transition-all px-4 py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Services
+              </a>
+              <a 
+                href="#team" 
+                className="text-lg font-medium hover:text-rose-300 transition-all px-4 py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Our Team
+              </a>
+              <a 
+                href="#contact" 
+                className="text-lg font-medium hover:text-rose-300 transition-all px-4 py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact
+              </a>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );
