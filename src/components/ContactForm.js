@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -12,16 +12,7 @@ const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  useEffect(() => {
-    const messageInput = document.querySelector('#message');
-    if (messageInput && messageInput.value !== formData.message) {
-      // Use functional update to avoid the dependency warning
-      setFormData(prevFormData => ({
-        ...prevFormData,
-        message: messageInput.value
-      }));
-    }
-  }, []); // Empty dependency array, only run on mount
+  // Remove the problematic useEffect hook entirely
 
   const handleChange = (e) => {
     const { name, value } = e.target;
