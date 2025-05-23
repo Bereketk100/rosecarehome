@@ -15,9 +15,13 @@ const ContactForm = () => {
   useEffect(() => {
     const messageInput = document.querySelector('#message');
     if (messageInput && messageInput.value !== formData.message) {
-      setFormData({ ...formData, message: messageInput.value });
+      // Use functional update to avoid the dependency warning
+      setFormData(prevFormData => ({
+        ...prevFormData,
+        message: messageInput.value
+      }));
     }
-  }, [formData.message]);
+  }, []); // Empty dependency array, only run on mount
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -122,6 +126,7 @@ const ContactForm = () => {
       </div>
       <div>
         <textarea
+          id="message"
           name="message"
           value={formData.message}
           onChange={handleChange}
