@@ -4,11 +4,17 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-gradient-to-r from-green-700 to-green-600 text-white py-5 shadow-lg border-b-2 border-rose-300">
+    <header className="bg-gradient-to-r from-green-700 to-green-600 text-white py-4 shadow-lg border-b-2 border-rose-300">
       <div className="container mx-auto px-6">
         {/* Desktop Menu */}
         <div className="hidden md:flex justify-between items-center">
-          <h1 className="text-3xl font-extrabold tracking-tight">Whiterose Care Homes</h1>
+          <a href="/" className="flex items-center">
+            <img 
+              src="/whiteroselogo.png" 
+              alt="Whiterose Care Homes Logo" 
+              className="h-16 object-contain mr-auto" 
+            />
+          </a>
           <nav className="space-x-8">
             <a href="/" className="text-lg font-medium hover:text-rose-300 transition-all">Home</a>
             <a href="#services" className="text-lg font-medium hover:text-rose-300 transition-all">Services</a>
@@ -19,7 +25,13 @@ const Header = () => {
 
         {/* Mobile Menu */}
         <div className="flex md:hidden justify-between items-center">
-          <h1 className="text-xl font-bold tracking-tight">Whiterose</h1>
+          <a href="/" className="flex items-center">
+            <img 
+              src="/dd.png" 
+              alt="Whiterose Care Homes Logo" 
+              className="h-12 object-contain" 
+            />
+          </a>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="text-white focus:outline-none"
