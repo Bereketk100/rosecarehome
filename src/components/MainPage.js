@@ -195,17 +195,68 @@ const MainPage = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact Section - Updated with contact info instead of form */}
       <section id="contact" className="bg-gradient-to-r from-green-700 to-green-600 text-white py-16 md:py-28">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-6xl font-bold mb-6 md:mb-10">
             Contact Us
             <span className="block h-1 w-20 md:w-24 bg-rose-300 mx-auto mt-4"></span>
           </h2>
-          <p className="text-lg md:text-xl font-light mb-8 md:mb-12">
-            Have questions or want to learn more? Reach out to us today! Our team is here to provide the information and support you need.
-          </p>
-          <ContactForm />
+          
+          <div className="bg-white text-green-900 p-8 md:p-10 rounded-lg shadow-lg max-w-2xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+              {/* Address Section */}
+              <div className="flex flex-col items-center md:items-start">
+                <div className="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl md:text-2xl font-semibold mb-2 text-green-800">Our Location</h3>
+                <address className="text-base md:text-lg text-gray-600 not-italic text-center md:text-left">
+                  2206 NE Kelly Avenue<br />
+                  Gresham, OR 97030
+                </address>
+              </div>
+              
+              {/* Contact Details Section - Updated for better visibility */}
+              <div className="flex flex-col items-center md:items-start">
+                <div className="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl md:text-2xl font-semibold mb-2 text-green-800">Contact Details</h3>
+                <div className="text-base md:text-lg text-green-700 font-medium text-center md:text-left">
+                  <p className="mb-1">
+                    <a href="tel:7742533275" className="text-green-700">
+                      Phone: (774) 253-3275
+                    </a>
+                  </p>
+                  <p>
+                    <a href="mailto:whiterosecarehomes@gmail.com" className="text-green-700">
+                      whiterosecarehomes@gmail.com
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Map Integration */}
+            <div className="mt-8 rounded-lg overflow-hidden shadow-md">
+              <iframe 
+                title="Whiterose Care Homes Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.0454434088614!2d-122.42583688444392!3d45.51990227910159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5495a1aa033723ad%3A0x984ca4243a92c81e!2s2206%20NE%20Kelly%20Ave%2C%20Gresham%2C%20OR%2097030!5e0!3m2!1sen!2sus!4v1660000000000!5m2!1sen!2sus" 
+                width="100%" 
+                height="300" 
+                style={{ border: 0 }} 
+                allowFullScreen="" 
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+          
           <div className="mt-10 flex justify-center">
             <img
               src="/dd.png"
