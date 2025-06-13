@@ -230,8 +230,8 @@ const MainPage = () => {
                 <h3 className="text-xl md:text-2xl font-semibold mb-2 text-green-800">Contact Details</h3>
                 <div className="text-base md:text-lg text-green-700 font-medium text-center md:text-left">
                   <p className="mb-1">
-                    <a href="tel:7742533275" className="text-green-700">
-                      Phone: (774) 253-3275
+                    <a href="tel:7742532755" className="text-green-700">
+                      Phone: (774) 253-2755
                     </a>
                   </p>
                   <p>
